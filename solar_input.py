@@ -23,16 +23,20 @@ def read_space_objects_data_from_file(input_filename):
                 star = Star()
                 parse_star_parameters(line, star)
                 objects.append(star)
+            elif object_type == "planet":
+                planet = Planet()
+                parse_planet_parameters(line, planet)
+                objects.append(planet)
             else:
                 print("Unknown space object")
 
     return objects
 
-
 def parse_star_parameters(line, star):
     """Считывает данные о звезде из строки.
     Входная строка должна иметь слеюущий формат:
     Star <радиус в пикселах> <цвет> <масса> <x> <y> <Vx> <Vy>
+
 
     Здесь (x, y) — координаты зведы, (Vx, Vy) — скорость.
     Пример строки:
@@ -43,8 +47,16 @@ def parse_star_parameters(line, star):
     **line** — строка с описание звезды.
     **star** — объект звезды.
     """
-
-    pass  # FIXME: not done yet
+    linearray = line.split()
+    print(linearray)
+    star.R = float(linearray[1])
+    star.color = linearray[2]
+    star.m = float(linearray[3])
+    star.x = float(linearray[4])
+    star.y = float(linearray[5])
+    star.Vx = float(linearray[6])
+    star.Vy = float(linearray[7])
+    return True
 
 def parse_planet_parameters(line, planet):
     """Считывает данные о планете из строки.
@@ -61,7 +73,16 @@ def parse_planet_parameters(line, planet):
     **line** — строка с описание планеты.
     **planet** — объект планеты.
     """
-    pass  # FIXME: not done yet...
+    linearray = line.split()
+    print(linearray)
+    planet.R = float(linearray[1])
+    planet.color = linearray[2]
+    planet.m = float(linearray[3])
+    planet.x = float(linearray[4])
+    planet.y = float(linearray[5])
+    planet.Vx = float(linearray[6])
+    planet.Vy = float(linearray[7])
+    return True
 
 
 def write_space_objects_data_to_file(output_filename, space_objects):
